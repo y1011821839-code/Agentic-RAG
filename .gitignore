@@ -1,0 +1,39 @@
+# 环境变量（含真实密钥）
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Chroma 向量数据库
+chroma_db/
+backend/chroma_db/
+
+# SQLite 会话数据库
+*.db
+backend/*.db
+
+# 虚拟环境
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
