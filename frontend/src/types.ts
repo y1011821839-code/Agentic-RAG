@@ -12,3 +12,10 @@ export interface ChatResponse {
   sources: any[];
   tools_used: string[];
 }
+
+export interface Session {
+  id: string;
+  title: string;
+  created_at: string;
+  updated_at: string;
+}

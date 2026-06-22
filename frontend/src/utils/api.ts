@@ -115,6 +115,17 @@ export async function clearDocuments(): Promise<void> {
 
 // ========== 会话管理 ==========
 
+export async function createSession(title?: string): Promise<string> {
+  const response = await fetch(`${API_BASE_URL}/sessions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: title || '新对话' }),
+  });
+  if (!response.ok) throw new Error('创建会话失败');
+  const data = await response.json();
+  return data.session_id;
+}
+
 export async function listSessions(): Promise<any[]> {
   const response = await fetch(`${API_BASE_URL}/sessions`);
   if (!response.ok) throw new Error('获取会话列表失败');
