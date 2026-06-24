@@ -1,40 +1,24 @@
 """
-FastAPI Main Application
+FastAPI 模型层 — 仅供 Node.js 接入层内部调用
 """
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from app.api import chat_router, documents_router
-from app.api.sessions import router as sessions_router
+from app.api.internal import router as internal_router
 from app.config import HOST, PORT
 
-# 创建FastAPI应用
 app = FastAPI(
-    title="Agentic RAG API",
-    description="Agentic RAG 智能问答系统 API",
+    title="Agentic RAG 模型层",
+    description="Agentic RAG 模型层 — 内部 API（LLM / 检索 / Agent）",
     version="1.0.0"
 )
 
-# 配置 CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # 生产环境应限制为前端地址
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# 注册路由
-app.include_router(chat_router)
-app.include_router(documents_router)
-app.include_router(sessions_router)
+# 注册内部路由
+app.include_router(internal_router)
 
 
 @app.get("/")
 async def root():
-    """根路径"""
     return {
-        "message": "Agentic RAG API",
-        "docs": "/docs",
+        "service": "agentic-rag-model-layer",
         "version": "1.0.0"
     }
 
